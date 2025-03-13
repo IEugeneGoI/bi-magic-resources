@@ -1,75 +1,126 @@
 import React from "react";
+import TextSegment from "../TextSegment/TextSegment";
+import PathSegment from "../PathSegment/PathSegment";
+import "./style.module.scss";
 
-const COLORS = { front: "#ff7f0e", back: "#2ca02c", db: "#1f77b4" };
+const COLORS = {
+  front: "rgb(74, 182, 232)",
+  back: "rgb(170, 111, 172)",
+  db: "rgb(232, 84, 152)",
+};
 
 const Bar = ({ data, instances, components, width, gap, height }) => {
-    const renderBar = instances.map((inst, index) => {
-        let yOffset = height;
-
-        return (
-            <g
-                key={inst}
-                transform={`translate(${index * (width + gap) + 80}, 0)`}
-            >
-                {components.map((comp) => {
-                    const barHeight = data[inst][comp];
-                    yOffset -= barHeight;
-
-                    return (
-                        <>
-                            <rect
-                                key={comp}
-                                x={0}
-                                y={yOffset}
-                                width={width}
-                                height={barHeight}
-                                fill={COLORS[comp]}
-                            />
-                            <text
-                                x={width / 2}
-                                y={yOffset + barHeight / 2}
-                                fontSize="14"
-                                textAnchor="middle"
-                                dominantBaseline="middle"
-                                fill="white"
-                                fontWeight="bold"
-                            >
-                                {data[inst][comp]}
-                            </text>
-                        </>
-                    );
-                })}
-            </g>
-        );
-    });
+  const renderBar = instances.map((inst, index) => {
+    let yOffset = height;
 
     return (
-        <>
-            {renderBar}
-            <g>
-                <rect
-                    x={instances.length * (width + gap) + 80}
-                    y={height - data.norm}
-                    width={width}
-                    height={data.norm}
-                    fill="gray"
-                />
-                <text
-                    transform={`translate(${
-                        instances.length * (width + gap) + 80
-                    }, 0)`}
-                    x={width / 2}
-                    y={height - data.norm / 2}
-                    fontSize="14"
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    fill="white"
-                    fontWeight="bold"
-                >
-                    {data.norm}
-                </text>
+      <g key={inst} transform={`translate(${index * (width + gap) + 80}, 0)`}>
+        {components.map((comp, compIndex) => {
+          const barHeight = data[inst][comp];
+          yOffset -= barHeight;
+
+          const isFirst = compIndex === 0;
+          const isLast = compIndex === components.length - 1;
+          const radius = 10;
+
+          const pathDownAngles = `
+            M 0 ${yOffset}
+            L ${width} ${yOffset}
+            L ${width} ${yOffset + barHeight - radius}
+            Q ${width} ${yOffset + barHeight} ${width - radius} ${
+            yOffset + barHeight
+          }
+            L ${radius} ${yOffset + barHeight}
+            Q 0 ${yOffset + barHeight} 0 ${yOffset + barHeight - radius}
+            L 0 ${yOffset}
+            Z
+          `;
+
+          const pathUpAngles = `
+            M ${radius} ${yOffset}
+            Q 0 ${yOffset} 0 ${yOffset + radius}
+            L 0 ${yOffset + barHeight}
+            L ${width} ${yOffset + barHeight}
+            L ${width} ${yOffset + radius}
+            Q ${width} ${yOffset} ${width - radius} ${yOffset}
+            L ${radius} ${yOffset}
+            Z
+          `;
+
+          const pathRect = `
+            M 0 ${yOffset}
+            L ${width} ${yOffset}
+            L ${width} ${yOffset + barHeight}
+            L 0 ${yOffset + barHeight}
+            Z
+          `;
+
+          const path = isLast
+            ? pathUpAngles
+            : isFirst
+            ? pathDownAngles
+            : pathRect;
+
+          return (
+            <g key={comp}>
+              <PathSegment d={path} fill={COLORS[comp]} />
+              <TextSegment
+                x={width / 2}
+                y={yOffset + barHeight / 2}
+                valueText={data[inst][comp]}
+              />
             </g>
-        </>
+          );
+        })}
+      </g>
     );
+  });
+
+  const renderBarNormal = () => {
+    const dPathSegment = `M 10 ${height - data.norm} 
+            L ${width - 10} ${height - data.norm} 
+            Q ${width} ${height - data.norm} ${width} ${
+      height - data.norm + 10
+    } 
+            L ${width} ${height - 10} 
+            Q ${width} ${height} ${width - 10} ${height} 
+            L 10 ${height} 
+            Q 0 ${height} 0 ${height - 10} 
+            L 0 ${height - data.norm + 10} 
+            Q 0 ${height - data.norm} 10 ${height - data.norm} 
+            Z`;
+
+    return (
+      <>
+        <defs>
+          <pattern
+            id="stripePattern"
+            patternUnits="userSpaceOnUse"
+            width="20"
+            height="20"
+            patternTransform="rotate(45)"
+          >
+            <rect width="10" height="20" fill="white" />
+            <rect x="10" width="10" height="20" fill={COLORS.front} />
+          </pattern>
+        </defs>
+        <g transform={`translate(${instances.length * (width + gap) + 80}, 0)`}>
+          <PathSegment d={dPathSegment} fill={`url(#stripePattern)`} />
+          <TextSegment
+            x={width / 2}
+            y={height - data.norm / 2}
+            valueText={data.norm}
+          />
+        </g>
+      </>
+    );
+  };
+
+  return (
+    <>
+      {renderBar}
+      {renderBarNormal()}
+    </>
+  );
 };
 export default Bar;

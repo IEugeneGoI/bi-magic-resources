@@ -6,7 +6,7 @@
   "scripts": {
     "pull": "node scripts/pull.js",
     "push": "yon build && yon _push",
-    "start": "node scripts/start.js",
+    "start": "node scripts/start.js && start http://localhost:3000",
     "test": "jest --passWithNoTests",
     "build": "rimraf dist && webpack --env build",
     "_push": "node scripts/push.js",

@@ -1,0 +1,14 @@
+svg {
+  g > {
+    g > {
+      text[fill="rgb(255, 255, 255)"] {
+        dominant-baseline: middle;
+      }
+    }
+  }
+  g:nth-child(5) > {
+    text {
+      fill: rgb(137, 130, 144);
+    }
+  }
+}
