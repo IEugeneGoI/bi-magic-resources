@@ -40,8 +40,8 @@ const App = () => {
       <h1>{title}</h1>
       <div className="svg-wrapper">
         <svg
-          //width={viewWidth}
-          //height={viewHeight}
+          width={viewWidth}
+          height={viewHeight}
           viewBox={`0 -20 ${viewWidth} ${viewHeight}`}
           preserveAspectRatio="xMidYMid meet"
           xmlns="http://www.w3.org/2000/svg"
