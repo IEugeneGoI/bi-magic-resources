@@ -1,6 +1,9 @@
-.line_diffrence {
-    fill: rgb(255, 255, 255);
-    font-size: 14px;
-    font-weight: 700;
-    text-anchor: middle;
+.line_difference {
+  fill: rgb(255, 255, 255);
+  font-size: 14px;
+  font-weight: 700;
+  text-anchor: middle;
+  &_zero {
+    text-anchor: end;
+  }
 }

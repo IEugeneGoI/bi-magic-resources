@@ -1,7 +1,7 @@
 import React from "react";
 
 const TextSegment = ({ x, y, valueText, styleClass }) => {
-    const maxChars = 9;
+    const maxChars = 100;
     const cutText =
         valueText.toLocaleString().length > maxChars
             ? valueText.slice(0, maxChars) + ".."
