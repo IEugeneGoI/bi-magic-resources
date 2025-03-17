@@ -5,9 +5,13 @@
     "esModuleInterop": true,
     "module": "commonjs",
     "target": "es5",
-    "sourceMap": true
+    "sourceMap": true,
+    "typeRoots": ["./node_modules/@types", "src/ds_7/types"],
+    "resolveJsonModule": true
   },
+  "include": ["src"],
   "exclude": [
     "node_modules"
   ]
 }
+

@@ -6,8 +6,11 @@ import TextSegment from "../TextSegment/TextSegment";
 import Arrow from "../Arrow/Arrow";
 import { getTotal } from "./../../utils/getTotal";
 import { colorsRect } from "./../../utils/colors";
+import styles from "./LinesSyles.module.scss";
 
 const Lines = ({ data, instances, width, gap, height, offset }) => {
+    const { line_diffrence } = styles;
+
     const renderLines = instances.slice(0, -1).map((inst, index) => {
         const totalCurrent = getTotal(data, inst);
         const totalNext = getTotal(data, instances[index + 1]);
@@ -57,7 +60,12 @@ const Lines = ({ data, instances, width, gap, height, offset }) => {
                 />
                 <PolygonSegment x={xPolygon} y={yPolygon} />
                 <RectSegment x={xRect} y={yRect} rectFill={rectFill} />
-                <TextSegment x={xText} y={yText} valueText={valueText} />
+                <TextSegment
+                    x={xText}
+                    y={yText}
+                    valueText={valueText}
+                    styleClass={line_diffrence}
+                />
                 <Arrow x={xArrow} y={yArrow} diff={diff} />
             </g>
         );
