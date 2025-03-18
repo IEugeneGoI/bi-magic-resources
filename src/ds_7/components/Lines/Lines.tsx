@@ -53,19 +53,33 @@ const Lines = ({
           offset / 1.65;
     const yPolygon = height - instanceHeights[nextInst] * 1.02;
 
-    const xRect = (index + 1) * (width + gap) + width / 2 - offset * 1.55;
+    const maxChars = 3;
+    const valueText = diff > 0 ? `+${diff}` : diff;
+    const xRect =
+      valueText.toLocaleString().length > maxChars
+        ? (index + 1) * (width + gap) + width / 2 - offset * 3
+        : (index + 1) * (width + gap) + width / 2 - offset * 1.55;
     const yRect = yM + yH1 - RECT_HEIGHT / 2;
     const rectFill = diff > 0 ? green : diff === 0 ? grey : red;
-
-    const xText = (index + 1) * (width + gap) + width / 2 + offset * 1.7;
+    const rectWidth =
+      valueText.toLocaleString().length > maxChars
+        ? RECT_WIDTH * 1.8
+        : RECT_WIDTH;
+    const xText =
+      valueText.toLocaleString().length > maxChars
+        ? (index + 1) * (width + gap) + width / 2 + offset * 2.2
+        : (index + 1) * (width + gap) + width / 2 + offset * 1.7;
     const yText = yRect + offset * 1.85;
-    const valueText = diff > 0 ? `+${diff}` : diff;
+
     const lineDifference =
       diff === 0
         ? `${line_difference} ${line_difference_zero}`
         : `${line_difference}`;
 
-    const xArrow = (index + 1) * (width + gap) + width / 2 - offset * 0.6;
+    const xArrow =
+      valueText.toLocaleString().length > maxChars
+        ? (index + 1) * (width + gap) + width / 2 - offset * 2.2
+        : (index + 1) * (width + gap) + width / 2 - offset * 0.6;
     const yArrow = yRect + offset * 0.75;
 
     return (
@@ -77,7 +91,7 @@ const Lines = ({
           y={yRect}
           rx={RECT_RX}
           ry={RECT_RY}
-          width={RECT_WIDTH}
+          width={rectWidth}
           height={RECT_HEIGHT}
           rectFill={rectFill}
         />

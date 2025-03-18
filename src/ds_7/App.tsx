@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import Bar from "./components/Bar/Bar";
 import Lines from "./components/Lines/Lines";
+import TextSegment from "./components/TextSegment/TextSegment";
 import { svgSizes } from "./utils/svgSizes";
 import { getInstances, getComponents } from "./utils/getTotal";
 import { fetchData, DATA_URLS } from "./api/fetchData";
 import "./index.scss";
-import TextSegment from "./components/TextSegment/TextSegment";
 
 const App = () => {
   const [data, setData] = useState(null);

@@ -13,6 +13,7 @@ const Bar = ({ data, instances, components, width, gap, height, barRefs }) => {
   } = rectSizes;
   const radius = 10;
   const maxBarHeight = height / 3;
+  const minBarHeight = 24;
 
   const maxValue = Math.max(
     ...instances.flatMap((inst) => components.map((comp) => data[inst][comp]))
@@ -20,8 +21,10 @@ const Bar = ({ data, instances, components, width, gap, height, barRefs }) => {
 
   const normalizedData = instances.reduce((acc, inst) => {
     acc[inst] = components.reduce((innerAcc, comp) => {
-      innerAcc[comp] =
+      let calculatedHeight =
         maxValue > 0 ? (data[inst][comp] / maxValue) * maxBarHeight : 0;
+      innerAcc[comp] =
+        data[inst][comp] === 0 ? 0 : Math.max(calculatedHeight, minBarHeight);
       return innerAcc;
     }, {});
     return acc;
@@ -70,13 +73,17 @@ const Bar = ({ data, instances, components, width, gap, height, barRefs }) => {
 
       return (
         <g key={comp}>
-          <PathSegment d={path} fill={colorsComponents[comp]} />
-          <TextSegment
-            x={width / 2}
-            y={yOffset + barHeight / 2}
-            valueText={data[inst][comp]}
-            styleClass={`${text} ${text_value}`}
-          />
+          {barHeight > 0 && (
+            <PathSegment d={path} fill={colorsComponents[comp]} />
+          )}
+          {barHeight > 0 && (
+            <TextSegment
+              x={width / 2}
+              y={yOffset + barHeight / 2}
+              valueText={data[inst][comp]}
+              styleClass={`${text} ${text_value}`}
+            />
+          )}
         </g>
       );
     });
