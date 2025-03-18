@@ -16,7 +16,7 @@ const App = () => {
   useEffect(() => {
     (async () => {
       try {
-        const data = await fetchData(DATA_URLS[1]);
+        const data = await fetchData(DATA_URLS[2]);
         setData(data);
         setLoading(false);
       } catch (error) {
@@ -42,7 +42,7 @@ const App = () => {
         <svg
           width={viewWidth}
           height={viewHeight}
-          viewBox={`0 0 ${viewWidth} ${viewHeight}`}
+          viewBox={`0 60 ${viewWidth} ${viewHeight}`}
           preserveAspectRatio="xMidYMid meet"
           xmlns="http://www.w3.org/2000/svg"
         >

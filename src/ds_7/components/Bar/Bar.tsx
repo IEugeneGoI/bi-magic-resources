@@ -7,6 +7,7 @@ import { colorsComponents } from "./../../utils/colors";
 const Bar = ({ data, instances, components, width, gap, height }) => {
   const { text, text_value, text_legend, text_normal } = barStyles;
   const radius = 10;
+  const maxBarHeight = height / 3;
 
   const maxValue = Math.max(
     ...instances.flatMap((inst) => components.map((comp) => data[inst][comp]))
@@ -15,7 +16,7 @@ const Bar = ({ data, instances, components, width, gap, height }) => {
   const normalizedData = instances.reduce((acc, inst) => {
     acc[inst] = components.reduce((innerAcc, comp) => {
       innerAcc[comp] =
-        maxValue > 0 ? ((data[inst][comp] / maxValue) * height) / 2 : 0;
+        maxValue > 0 ? (data[inst][comp] / maxValue) * maxBarHeight : 0;
       return innerAcc;
     }, {});
     return acc;
@@ -93,7 +94,7 @@ const Bar = ({ data, instances, components, width, gap, height }) => {
 
   const renderBarNormal = ({ radius }) => {
     const normalizedNorm =
-      maxValue > 0 ? ((data.norm / maxValue) * height) / 2 : 0;
+      maxValue > 0 ? (data.norm / maxValue) * maxBarHeight : 0;
 
     const dPathSegment = `M ${radius} ${height - normalizedNorm} 
             L ${width - radius} ${height - normalizedNorm} 
