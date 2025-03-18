@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef  } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Bar from "./components/Bar/Bar";
 import Lines from "./components/Lines/Lines";
 import { svgSizes } from "./utils/svgSizes";
@@ -83,7 +83,7 @@ const App = () => {
               gap={barGap}
               height={viewHeight}
               offset={arrowOffset}
-              instanceHeights={instanceHeights} 
+              instanceHeights={instanceHeights}
             />
           </g>
         </svg>

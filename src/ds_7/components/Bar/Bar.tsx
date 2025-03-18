@@ -1,11 +1,16 @@
 import React from "react";
 import TextSegment from "../TextSegment/TextSegment";
 import PathSegment from "../PathSegment/PathSegment";
+import RectSegment from "../RectSegment/RectSegment";
 import barStyles from "./BarStyles.module.scss";
-import { colorsComponents } from "./../../utils/colors";
+import { colorsComponents, colorsRect } from "./../../utils/colors";
+import { rectSizes } from "../../utils/svgSizes";
 
-const Bar = ({ data, instances, components, width, gap, height, barRefs  }) => {
+const Bar = ({ data, instances, components, width, gap, height, barRefs }) => {
   const { text, text_value, text_legend, text_normal } = barStyles;
+  const {
+    rectNorm: { RECT_RX, RECT_RY, RECT_WIDTH, RECT_HEIGHT },
+  } = rectSizes;
   const radius = 10;
   const maxBarHeight = height / 3;
 
@@ -114,7 +119,11 @@ const Bar = ({ data, instances, components, width, gap, height, barRefs  }) => {
 
     const normValue = data.norm.toString();
     const rectWidth =
-      normValue.length === 2 ? 24 : normValue.length === 3 ? 48 : width;
+      normValue.length === 2
+        ? RECT_WIDTH / 2
+        : normValue.length === 3
+        ? RECT_WIDTH
+        : width;
 
     return (
       <>
@@ -136,24 +145,21 @@ const Bar = ({ data, instances, components, width, gap, height, barRefs  }) => {
           }, 0)`}
         >
           <PathSegment d={dPathSegment} fill={`url(#stripePattern)`} />
-
-          <rect
+          <RectSegment
             x={(width - rectWidth) / 2}
-            y={height - normalizedNorm + (normalizedNorm - 24) / 2}
+            y={height - normalizedNorm + (normalizedNorm - RECT_HEIGHT) / 2}
             width={rectWidth}
-            height="24"
-            rx="5"
-            ry="5"
-            fill="white"
+            height={RECT_HEIGHT}
+            rx={RECT_RX}
+            ry={RECT_RY}
+            rectFill={colorsRect.white}
           />
-
           <TextSegment
             x={width / 2}
             y={height - normalizedNorm / 2}
             valueText={data.norm}
             styleClass={`${text} ${text_normal}`}
           />
-
           <TextSegment
             x={width / 2}
             y={height + gap / 4.05}
