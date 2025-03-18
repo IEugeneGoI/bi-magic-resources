@@ -4,7 +4,7 @@ import PathSegment from "../PathSegment/PathSegment";
 import barStyles from "./BarStyles.module.scss";
 import { colorsComponents } from "./../../utils/colors";
 
-const Bar = ({ data, instances, components, width, gap, height }) => {
+const Bar = ({ data, instances, components, width, gap, height, barRefs  }) => {
   const { text, text_value, text_legend, text_normal } = barStyles;
   const radius = 10;
   const maxBarHeight = height / 3;
@@ -80,6 +80,7 @@ const Bar = ({ data, instances, components, width, gap, height }) => {
       <g
         key={inst}
         transform={`translate(${index * (width + gap) + width}, 0)`}
+        ref={(el) => (barRefs.current[inst] = el)}
       >
         {renderComponents}
         <TextSegment

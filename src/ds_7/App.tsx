@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef  } from "react";
 import Bar from "./components/Bar/Bar";
 import Lines from "./components/Lines/Lines";
 import { svgSizes } from "./utils/svgSizes";
@@ -13,10 +13,13 @@ const App = () => {
   const [error, setError] = useState(null);
   const { barWidth, barGap, arrowOffset, viewWidth, viewHeight } = svgSizes;
 
+  const [instanceHeights, setInstanceHeights] = useState({});
+  const barRefs = useRef({});
+
   useEffect(() => {
     (async () => {
       try {
-        const data = await fetchData(DATA_URLS[2]);
+        const data = await fetchData(DATA_URLS[0]);
         setData(data);
         setLoading(false);
       } catch (error) {
@@ -26,6 +29,17 @@ const App = () => {
       }
     })();
   }, []);
+
+  useEffect(() => {
+    const newHeights = {};
+    Object.keys(barRefs.current).forEach((inst) => {
+      if (barRefs.current[inst]) {
+        const height = barRefs.current[inst].getBoundingClientRect().height;
+        newHeights[inst] = height;
+      }
+    });
+    setInstanceHeights(newHeights);
+  }, [data]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading data</p>;
@@ -60,6 +74,7 @@ const App = () => {
               width={barWidth}
               gap={barGap}
               height={viewHeight}
+              barRefs={barRefs}
             />
             <Lines
               data={data}
@@ -68,6 +83,7 @@ const App = () => {
               gap={barGap}
               height={viewHeight}
               offset={arrowOffset}
+              instanceHeights={instanceHeights} 
             />
           </g>
         </svg>
