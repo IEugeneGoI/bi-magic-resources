@@ -16,7 +16,7 @@ export const rectSizes = {
   rectLines: {
     RECT_RX: 10,
     RECT_RY: 10,
-    RECT_WIDTH: 48,
+    RECT_WIDTH: 48, 
     RECT_HEIGHT: 24,
   },
   rectNorm: {

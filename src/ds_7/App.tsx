@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Bar from "./components/Bar/Bar";
 import Lines from "./components/Lines/Lines";
 import TextSegment from "./components/TextSegment/TextSegment";
+import LegendBottom from "./components/LegendBottom/LegendBottom";
 import { svgSizes } from "./utils/svgSizes";
 import { getInstances, getComponents } from "./utils/getTotal";
 import { fetchData, DATA_URLS } from "./api/fetchData";
@@ -86,6 +87,7 @@ const App = () => {
               instanceHeights={instanceHeights}
             />
           </g>
+          <LegendBottom height={viewHeight} gap={barGap} width={barWidth} />
         </svg>
       </div>
     </div>
