@@ -5,11 +5,11 @@
   "main": "dist/bootstrap.js",
   "scripts": {
     "pull": "node scripts/pull.js",
-    "push": "yon build && yon _push",
+    "//push": "yon build && yon _push",
     "start": "node scripts/start.js && start http://localhost:3000",
     "test": "jest --passWithNoTests",
     "build": "rimraf dist && webpack --env build",
-    "_push": "node scripts/push.js",
+    "push": "node scripts/push.js",
     "//dev": "webpack --progress --watch --env dev",
     "//start-wds": "webpack serve --config webpack.config.js --progress --watch",
     "create-topic": "node scripts/create.js topic",
