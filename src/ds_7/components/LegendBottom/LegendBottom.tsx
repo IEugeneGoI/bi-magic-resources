@@ -33,7 +33,7 @@ const LegendBottom = ({ width, height, gap }) => {
     const yText = height * 1.57;
 
     return (
-      <g key={key} transform={`translate(${0}, ${0})`}>
+      <g key={key}>
         <RectSegment
           x={xRect}
           y={yRect}
