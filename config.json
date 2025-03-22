@@ -1,5 +1,5 @@
 {
   "port": 3000,
-  "server": "https://luxmsbi.a2c.by",
-  "include": "^ds_7"
+  "server": "https://a2.demo.luxmsbi.ru/",
+  "include": "^ds_11"
 }
