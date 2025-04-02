@@ -1,3 +1,23 @@
-@import "./style/reset";
-@import "./style/vars";
-@import "./style/base";
+@import "../style/vars.scss";
+@import "../style/mixins.scss";
+
+.container {
+    font-family: $font-family;
+    @include flex-center($flex-direction: column);
+    height: 100%;
+    background: $background-color;
+
+    .svg-wrapper {
+        @include flex-center();
+        height: 100vh;
+        svg {
+            height: 100%;
+        }
+    }
+
+    .title {
+        fill: $text-color;
+        font-size: $font-16;
+        font-weight: $font-w-500;
+    }
+}

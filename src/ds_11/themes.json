@@ -1,0 +1,104 @@
+{
+    "dark": {
+        "color7": "rgba(151, 151, 196, 0.3)",
+        "color8": "#0070BA",
+        "color20": "#fff",
+        "color19": "#212D3C",
+        "color11": "rgba(255, 255, 255, 0.1)",
+        "system_panel": "#273445",
+        "system_background": "#273445",
+        "system_effect": "#3D4958",
+        "system_selection": "#212D3D",
+        "system_element": "#8EA4CE",
+        "neutral_300": "#F3F4F5",
+        "neutral_400": "#D4D6DA",
+        "neutral_500": "#A6ACB8",
+        "neutral_600": "#828894",
+        "neutral_700": "#707580",
+        "neutral_800": "#505661",
+        "neutral_900": "#3E444F",
+        "themeBuilder": {
+            "color": [
+                "#ADD4DE",
+                "#F6F6F6",
+                "#F1D1D7",
+                "#E88898",
+                "#EDADB7",
+                "#F1D1D7",
+                "#F6F6F6",
+                "#DAE5F1",
+                "#BED4EC",
+                "#A1C2E7",
+                "#85B1E2"
+            ]
+        }
+    },
+    "light": {
+        "color7": "rgba(151, 151, 196, 0.3)",
+        "color8": "#0070BA",
+        "color20": "#fff",
+        "color19": "#F2F2F8",
+        "color11": "rgba(151, 151, 196, 0.1)",
+        "system_panel": "#FFFFFF",
+        "system_background": "#878787",
+        "system_effect": "#F6F6F9",
+        "system_selection": "#E9E9F5",
+        "system_element": "#9797C4",
+        "neutral_300": "#363636",
+        "neutral_400": "#4F4F4F",
+        "neutral_500": "#686868",
+        "neutral_600": "#828282",
+        "neutral_700": "#9C9C9C",
+        "neutral_800": "#CECECE",
+        "neutral_900": "#E8E8E8",
+        "themeBuilder": {
+            "color": [
+                "#54A2AE",
+                "#FFF1E6",
+                "#E36378",
+                "#E88898",
+                "#EDADB7",
+                "#F1D1D7",
+                "#F6F6F6",
+                "#DAE5F1",
+                "#BED4EC",
+                "#A1C2E7",
+                "#85B1E2"
+            ]
+        }
+    },
+    "pink": {
+        "color7": "rgba(249, 180, 45, 0.4)",
+        "color8": "#000000",
+        "color20": "#000000",
+        "color19": "#000000",
+        "color11": "rgba(100, 180, 45, 0.4)",
+        "system_panel": "linear-gradient(214deg, rgba(2,0,36,1) 0%, rgba(233,51,15,0.8855917366946778) 46%, rgba(0,212,255,1) 100%)",
+        "system_background": "linear-gradient(214deg, rgba(2,0,36,1) 0%, rgba(233,51,15,0.8855917366946778) 46%, rgba(0,212,255,1) 100%)",
+        "system_effect": "#F6F6F9",
+        "system_selection": "#E9E9F5",
+        "system_element": "#9797C4",
+        "neutral_300": "#363636",
+        "neutral_400": "#4F4F4F",
+        "neutral_500": "#686868",
+        "neutral_600": "#828282",
+        "neutral_700": "#9C9C9C",
+        "neutral_800": "#CECECE",
+        "neutral_900": "#E8E8E8",
+        "themeBuilder": {
+            "color": [
+                "#54A2AE",
+                "#FFF1E6",
+                "#E36378",
+                "#E88898",
+                "#EDADB7",
+                "#F1D1D7",
+                "#F6F6F6",
+                "#DAE5F1",
+                "#BED4EC",
+                "#A1C2E7",
+                "#85B1E2"
+            ]
+        }
+    }
+}
