@@ -31,9 +31,7 @@ const App = () => {
                 setLoading(false);
             }
         })();
-    }, [selectedOption]);
 
-    useEffect(() => {
         const newHeights = {};
         Object.keys(barRefs.current).forEach((inst) => {
             if (barRefs.current[inst]) {
@@ -43,7 +41,7 @@ const App = () => {
             }
         });
         setInstanceHeights(newHeights);
-    }, [data]);
+    }, [selectedOption, data]);
 
     const handlerChange = (event) => {
         setSelectedOption(event.target.value);
